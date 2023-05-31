@@ -1,8 +1,12 @@
 package com.rhytham.jetspot.network
 
-object ApiRoutes {
+object BlogApiRoutes {
 
-    private const val BASE_URL = "https://data-api.blaze.today/"
-    const val tableRowsUrl = BASE_URL + "api/database/rows/table/"
+    private const val BASE_URL = "https://jetspot-api.studyverse.workers.dev/"
+    const val all = BASE_URL + "all"
+    const val create = BASE_URL + "create"
+    const val update = BASE_URL + "create"
+    const val delete = BASE_URL + "delete"
+    const val getBlog = BASE_URL + "getBlog"
 
 }
