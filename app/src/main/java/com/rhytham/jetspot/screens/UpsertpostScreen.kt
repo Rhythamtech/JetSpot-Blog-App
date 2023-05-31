@@ -5,11 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -17,14 +14,13 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.Gson
+import com.rhytham.jetspot.item.EditorPostTopAppBar
 import com.rhytham.jetspot.model.BlogPost
-import java.text.SimpleDateFormat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,6 +51,12 @@ fun UpsertpostScreen(post: String, navHostController: NavHostController) {
             .fillMaxSize()
     ) {
 
+        EditorPostTopAppBar( appBarTitle = "Update Post",
+            buttonText = "Update",
+            onClick = {
+            // On Publish Button CLick
+        })
+
         // Heading or Title
         OutlinedTextField(
             modifier = Modifier
@@ -74,14 +76,6 @@ fun UpsertpostScreen(post: String, navHostController: NavHostController) {
             textStyle = MaterialTheme.typography.titleLarge
         )
 
-
-        // Last Published Date
-        Text(
-            modifier = Modifier
-                .padding(vertical = 4.dp)
-                .fillMaxWidth(),
-            text = "Last published Date :" + SimpleDateFormat("MMM dd, YYYY").format(blogPost.datePublished)
-        )
         //Blog Post
         OutlinedTextField(
             modifier = Modifier
@@ -109,6 +103,7 @@ fun UpsertpostScreen(post: String, navHostController: NavHostController) {
             textStyle = MaterialTheme.typography.bodyLarge
         )
 
+        //Category
         OutlinedTextField(
             modifier = Modifier
                 .padding(vertical = 4.dp)
@@ -131,18 +126,8 @@ fun UpsertpostScreen(post: String, navHostController: NavHostController) {
             label = {
                 Text(text = blogPost.author)
             })
-        //Read More Button
-        Button(modifier = Modifier
-            .width(120.dp)
-            .padding(vertical = 4.dp),
-            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onBackground),
-            onClick = {
-            }) {
-            Text(
-                textAlign = TextAlign.Center,
-                text = "Save"
-            )
-        }
+
+
     }
 }
 
