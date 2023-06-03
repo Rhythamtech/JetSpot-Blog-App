@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Create
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -43,15 +44,11 @@ fun ManageBlogScreen(navController: NavController) {
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                text = {
-                    Text(text = "Create")
-                },
-                icon = {
-                    Icon(imageVector = Icons.Default.Create, contentDescription = "Create Icon")
-                },
-                onClick = {
-                    navController.navigate(Screen.EditPost.route)
-                })
+                text = { Text(text = "Create") },
+                icon = { Icon(imageVector = Icons.Default.Create, contentDescription = "Create Icon") },
+                onClick = { navController.navigate(Screen.EditPost.route) },
+                containerColor = MaterialTheme.colorScheme.onBackground ,
+                contentColor = MaterialTheme.colorScheme.background)
         }
     ) { contentPadding ->
         val apiRepo = ApiRepository()
