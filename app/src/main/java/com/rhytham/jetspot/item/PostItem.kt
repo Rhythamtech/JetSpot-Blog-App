@@ -18,12 +18,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rhytham.jetspot.model.BlogPost
+import com.rhytham.jetspot.model.Post
 import java.util.Date
 
 @SuppressLint("SimpleDateFormat")
 @Composable
-fun PostItem(blogPost: BlogPost, onClick : ()->Unit) {
+fun PostItem(blogPost: Post, onClick : ()->Unit) {
 
 
     Card(
@@ -54,7 +54,7 @@ fun PostItem(blogPost: BlogPost, onClick : ()->Unit) {
         )
 
         //Author and blog detail
-        AuthorDetailBar(authorName = blogPost.author, publishedDate = blogPost.datePublished)
+        AuthorDetailBar(authorName = blogPost.authorName, publishedDate = blogPost.datePublished)
 
         //Read More Button
         Button(modifier = Modifier
@@ -78,13 +78,14 @@ fun PostItem(blogPost: BlogPost, onClick : ()->Unit) {
 fun PreviewPostItem() {
 
     PostItem(
-        blogPost = BlogPost(
+        blogPost = Post(
             postId = "hdkdhh12j48dhr",
             postTitle = "The Benefits of Using a Blog Template",
             category = "Blogging",
             postContent = "Using a blog template can help you manage every aspect of your blog posts from one unified place. You can organize, track, and share your blog posts without missing a deadline. This can save you time and effort while ensuring that your blog remains consistent and professional.",
-            author = "John Doe",
-            datePublished = Date()
+            authorName = "John Doe",
+            authorId = "jdgjd7yd944",
+            datePublished = Date().toString()
         ) ,
         onClick = {}
     )

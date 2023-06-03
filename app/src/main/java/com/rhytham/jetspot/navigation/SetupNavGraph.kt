@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.rhytham.jetspot.screens.BlogpostScreen
 import com.rhytham.jetspot.screens.HomeScreen
+import com.rhytham.jetspot.screens.ManageBlogScreen
 import com.rhytham.jetspot.screens.UpsertpostScreen
 
 @Composable
@@ -40,9 +41,13 @@ fun SetupNavGraph(navController: NavHostController) {
             })
         ) {
             UpsertpostScreen(
-                post = it.arguments?.getString("blog_post").toString(),
+                post = it.arguments?.getString("blog_post"),
                 navHostController = navController
             )
+        }
+
+        composable(route = Screen.ManageBlog.route){
+            ManageBlogScreen(navController = navController)
         }
 
     }

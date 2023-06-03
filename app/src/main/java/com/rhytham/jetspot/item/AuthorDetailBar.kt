@@ -1,5 +1,6 @@
 package com.rhytham.jetspot.item
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,9 +22,12 @@ import com.rhytham.jetspot.R
 import java.text.SimpleDateFormat
 import java.util.Date
 
+@SuppressLint("SimpleDateFormat")
 @Composable
-fun AuthorDetailBar( authorName:String, publishedDate: Date){
-    val sdf = SimpleDateFormat("MMM dd, YYYY")
+fun AuthorDetailBar(authorName:String, publishedDate: String){
+
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd")
+    val mainFormat = SimpleDateFormat("MMM dd, yyyy")
 
     Row(modifier = Modifier.fillMaxWidth()
         .padding(horizontal = 15.dp)
@@ -43,7 +47,7 @@ fun AuthorDetailBar( authorName:String, publishedDate: Date){
         }
 
         Text(modifier = Modifier.fillMaxWidth(),
-            text = sdf.format(publishedDate),
+            text = mainFormat.format(defaultFormat.parse(publishedDate) as Date),
         textAlign = TextAlign.End)
 
     }

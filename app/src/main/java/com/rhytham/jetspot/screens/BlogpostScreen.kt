@@ -1,6 +1,5 @@
 package com.rhytham.jetspot.screens
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,14 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.google.gson.Gson
 import com.rhytham.jetspot.item.AuthorDetailBar
-import com.rhytham.jetspot.model.BlogPost
+import com.rhytham.jetspot.model.Post
 import com.rhytham.jetspot.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BlogpostScreen( post:String, navHostController: NavHostController) {
     val gson = Gson()
-    val blogPost:BlogPost =  gson.fromJson(post,BlogPost::class.java)
+    val blogPost: Post =  gson.fromJson(post,Post::class.java)
 
     BackHandler(enabled = true) {
         navHostController.popBackStack()
@@ -66,7 +65,7 @@ fun BlogpostScreen( post:String, navHostController: NavHostController) {
             )
 
             //Author and blog detail
-            AuthorDetailBar(authorName = blogPost.author, publishedDate = blogPost.datePublished)
+            AuthorDetailBar(authorName = blogPost.authorName, publishedDate = blogPost.datePublished)
 
             //Blog Post
             Text(
