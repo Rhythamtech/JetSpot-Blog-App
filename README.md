@@ -21,17 +21,9 @@ These features allow users to easily consume and create content on the blog app,
 - **io.ktor:ktor-client-android**
 - **androidx.compose.ui:ui**
 
-## Screenshots and Videos
+## Video
 
-Here are some screenshots and a video demonstrating the app:
-## Screenshots
-| | |
-| [![Jet-Spot-Blog](https://i.ibb.co/GQFmpN2/Screenshot-20230609-180616-Jet-Spot-Blog.png)](https://ibb.co/F4np3Cw) | [![Jet-Spot-Blog](https://i.ibb.co/7p3sQmW/Screenshot-20230609-180625-Jet-Spot-Blog.png)](https://ibb.co/xgnxYTj) |
-| [![Jet-Spot-Blog](https://i.ibb.co/kxTvYT7/Screenshot-20230609-180630-Jet-Spot-Blog.png)](https://ibb.co/f2WLmWg) | [![Jet-Spot-Blog](https://i.ibb.co/jbjsS8h/Screenshot-20230609-180638-Jet-Spot-Blog.png)](https://ibb.co/LYsH30S) |
-| [![Jet-Spot-Blog](https://i.ibb.co/mBtwBCH/Screenshot-20230609-180649-Jet-Spot-Blog.png)](https://ibb.co/vBmGBxJ) | [![Jet-Spot-Blog](https://i.ibb.co/NnQNTJj/Screenshot-20230609-180657-Jet-Spot-Blog.png)](https://ibb.co/tPk2Lvs) |
-| [![Jet-Spot-Blog](https://i.ibb.co/DK4mDzP/Screenshot-20230609-180703-Jet-Spot-Blog.png)](https://ibb.co/2KqR7W0) | [![Jet-Spot-Blog](https://i.ibb.co/MkSrMKQ/Screenshot-20230609-180711-Jet-Spot-Blog.png)](https://ibb.co/7tCP2BL) |
-| [![Jet-Spot-Blog](https://i.ibb.co/4WGdTSt/Screenshot-20230609-180718-Jet-Spot-Blog.png)](https://ibb.co/nrvCc1m) | [![Jet-Spot-Blog](https://i.ibb.co/P14z7T3/Screenshot-20230609-180727-Jet-Spot-Blog.png)](https://ibb.co/GCk3KsB) |
-| [![Jet-Spot-Blog](https://i.ibb.co/7Vms6Gp/Screenshot-20230609-180732-Jet-Spot-Blog.png)](https://ibb.co/82Z1Sjx) | [![Jet-Spot-Blog](https://i.ibb.co/Z8Xt1x4/Screenshot-20230609-180740-Jet-Spot-Blog.png)](https://ibb.co/584txLp) |
+Here a video demonstrating the app:
 
 ## Video
 
