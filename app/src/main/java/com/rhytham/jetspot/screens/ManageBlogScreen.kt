@@ -33,6 +33,7 @@ fun ManageBlogScreen(navController: NavController) {
         navController.popBackStack()
     }
 
+
     Scaffold(
         modifier = Modifier.padding(horizontal = 8.dp),
         topBar = {

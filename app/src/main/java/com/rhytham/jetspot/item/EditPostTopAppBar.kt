@@ -37,9 +37,7 @@ fun EditorPostTopAppBar(appBarTitle:String,buttonText:String,onClick:()->Unit){
             .width(120.dp)
             .padding(vertical = 4.dp),
             colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onBackground),
-            onClick = {
-            }) {
-            onClick()
+            onClick = onClick) {
             Text(
                 textAlign = TextAlign.Center,
                 text = buttonText

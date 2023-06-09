@@ -37,6 +37,7 @@ object ApiClient {
                 isLenient = true
                 explicitNulls = false
             })
+
         }
 
         install(DefaultRequest){

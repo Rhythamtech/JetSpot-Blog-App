@@ -1,5 +1,8 @@
 package com.rhytham.jetspot.screens
 
+import android.annotation.SuppressLint
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,49 +17,70 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.htmlEncode
+import androidx.core.text.parseAsHtml
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.Gson
+import com.rhytham.jetspot.item.AlertMessage
 import com.rhytham.jetspot.item.EditorPostTopAppBar
 import com.rhytham.jetspot.model.Post
+import com.rhytham.jetspot.navigation.Screen
 import com.rhytham.jetspot.network.ApiRepository
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.Date
 
+@SuppressLint("SimpleDateFormat")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpsertpostScreen(post: String?, navHostController: NavHostController) {
 
     val gson = Gson()
     val apiRepo = ApiRepository()
+    val ctxt = LocalContext.current
 
     var topAppBarTitle by remember { mutableStateOf("Update Post") }
     var topAppBarButtonText by remember { mutableStateOf("Update") }
     val scope = rememberCoroutineScope()
+
 
     var wordCount by remember {
         mutableStateOf(0)
     }
 
     val blogPost: Post = if (post.equals("{blog_post}")) {
-        topAppBarTitle = "Create Post"
-        topAppBarButtonText = "Publish"
-        Post("", "", "", "", "", "", Date().toString())
-    } else {
-        gson.fromJson(post, Post::class.java)
-    }
+                topAppBarTitle = "Create Post"
+                topAppBarButtonText = "Publish"
+                Post("", "", "", "", "", "", Date().toString())
+            } else {
+                gson.fromJson(post, Post::class.java)
+            }
+
+
+
 
     var title by remember { mutableStateOf(blogPost.postTitle) }
     var postBody by remember { mutableStateOf(blogPost.postContent) }
     var category by remember { mutableStateOf(blogPost.category) }
+    val openDialog = remember { mutableStateOf(false) }
 
     wordCount = postBody.split("\\s+".toRegex()).size
 
     BackHandler(enabled = true) {
-        navHostController.popBackStack()
+        openDialog.value = true
     }
+
+    if (openDialog.value)
+        AlertMessage(
+            navController = navHostController,
+            alertText = "Do you really want to exit without saving",
+            openDialog = openDialog
+        )
+
     Column(
         modifier = Modifier
             .padding(all = 14.dp)
@@ -69,12 +93,48 @@ fun UpsertpostScreen(post: String?, navHostController: NavHostController) {
         EditorPostTopAppBar(appBarTitle = topAppBarTitle,
             buttonText = topAppBarButtonText,
             onClick = {
+
                 scope.launch {
-                    if (topAppBarButtonText == "Create") {
-                        apiRepo.createBlogpost(blogPost)
+                    if (topAppBarButtonText == "Publish") {
+                        blogPost.datePublished = SimpleDateFormat("yyyy-MM-dd").format(Date())
+
+                        // Just for Example Author Id : 187KuTPPac69w5DTnYaNhp
+                        blogPost.authorId ="187KuTPPac69w5DTnYaNhp"
+
+                        apiRepo.createBlogpost(Post(
+                            postId = blogPost.postId,
+                            postTitle = title,
+                            postContent = postBody,
+                            category = category,
+                            authorId = blogPost.authorId,
+                            authorName = blogPost.authorName,
+                            datePublished = blogPost.datePublished
+
+                        ))
+
                     } else {
-                        apiRepo.updateBlogpost(blogPost)
+
+                        Log.d("UPSERT",postBody.replace("\n","\\n"))
+
+                        apiRepo.updateBlogpost(Post(
+                            postId = blogPost.postId,
+                            postTitle = title,
+                            postContent = postBody.replace("\n","\\n"),
+                            category = category,
+                            authorId = blogPost.authorId,
+                            authorName = blogPost.authorName,
+                            datePublished = blogPost.datePublished
+
+                        ))
+
                     }
+
+                    Toast.makeText(
+                        ctxt,
+                        "Post ${topAppBarButtonText} Successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navHostController.popBackStack(Screen.Home.route,inclusive = false)
                 }
             })
 
@@ -101,7 +161,7 @@ fun UpsertpostScreen(post: String?, navHostController: NavHostController) {
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = postBody,
+            value = postBody.htmlEncode(),
             label = {
                 Text(
                     text = "Content Body",
