@@ -2,7 +2,7 @@ package com.rhytham.jetspot.network
 
 object BlogApiRoutes {
 
-    private const val BASE_URL = "https://jetspot-api.studyverse.workers.dev/"
+    private const val BASE_URL = "PASTE YOUR OWN URL"
     const val all = BASE_URL + "all"
     const val create = BASE_URL + "create"
     const val update = BASE_URL + "update"
