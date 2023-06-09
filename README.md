@@ -1,6 +1,7 @@
 
 
 # Jetspot Blog App
+# 🌟 Please give a star to this repo! 🌟
 #### Simple Example of Ktor Client, Material 3 and Navigation compose
 Jetspot blog app is demonstrate the basics of Ktor Client . Navigation in Compose and interact with Android material 3 design
 
